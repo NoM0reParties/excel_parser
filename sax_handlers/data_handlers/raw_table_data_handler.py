@@ -1,7 +1,7 @@
 from typing import List, Optional
 
 from schemas import XLSCellTagNames
-from xml_handlers.asbtract_xml_handler import AbstractXmlHandler
+from sax_handlers.asbtract_xml_handler import AbstractXmlHandler
 
 
 class RawTableDataHandler(AbstractXmlHandler):

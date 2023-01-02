@@ -1,6 +1,5 @@
-from filereader import FileReader
-from schemas import ExtractModes
-from xml_handlers import RawTableDataHandler, TableDataHandler
+from data_extractor_factory import DataExtractorFactory
+from schemas import ExtractModes, ExtractEngine
 
 
 class DataExtractor:
@@ -10,13 +9,16 @@ class DataExtractor:
             file_name: str,
             mode: ExtractModes = ExtractModes.SIMPLE,
             min_row: int = 1,
-            engine: ... = ...
+            engine: ExtractEngine = ExtractEngine.LXML
     ):
-        self.__mode = mode
-        self.__engine = engine
-        self.__file_reader = FileReader(
+        self.__factory = DataExtractorFactory
+        reader, data_handler = self.__factory.get_reader_and_handler(
+            mode=mode,
+            engine=engine
+        )
+        self.__file_reader = reader(
             file_name=file_name,
-            data_handler=self.__get_handler_by_mode,
+            data_handler=data_handler,
             min_row=min_row,
         )
         self.__data_read = False
@@ -28,10 +30,5 @@ class DataExtractor:
 
     def iter_rows(self):
         self.read_data()
-        return self.__file_reader.data_handler.iter_rows()
+        return self.__file_reader.iter_rows()
 
-    @property
-    def __get_handler_by_mode(self):
-        if self.__mode == ExtractModes.SIMPLE:
-            return RawTableDataHandler
-        return TableDataHandler

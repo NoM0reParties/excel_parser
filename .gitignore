@@ -149,6 +149,10 @@ dmypy.json
 # pytype static type analyzer
 .pytype/
 *.xlsx
+*.xml
+xl
+_rels
+docProps
 # Cython debug symbols
 cython_debug/
 

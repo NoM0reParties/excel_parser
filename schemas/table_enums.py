@@ -6,6 +6,11 @@ class ExtractModes(str, Enum):
     GROUP_BY = 'GROUP_BY'
 
 
+class ExtractEngine(str, Enum):
+    SAX = 'SAX'
+    LXML = 'LXML'
+
+
 class XLSTagTypes(str, Enum):
     CELL = 'c'
     VALUE = 'v'

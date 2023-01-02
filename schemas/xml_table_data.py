@@ -86,3 +86,6 @@ class XMLTableDataRow:
 
     def dict_by_col(self):
         return {c.col: c.typed_value for _, c in enumerate(self.cells)}
+
+    def set_cells(self, cells):
+        self.cells = cells

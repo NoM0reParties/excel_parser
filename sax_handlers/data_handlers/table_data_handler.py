@@ -1,7 +1,7 @@
 from typing import List, Optional
 
 from schemas import XMLTableDataCell, XMLTableDataRow, XLSCellTagNames, XLSRowTagNames
-from xml_handlers.asbtract_xml_handler import AbstractXmlHandler
+from sax_handlers.asbtract_xml_handler import AbstractXmlHandler
 
 
 class TableDataHandler(AbstractXmlHandler):
@@ -17,7 +17,7 @@ class TableDataHandler(AbstractXmlHandler):
         self._data_type = attrs.get(XLSCellTagNames.DATA_TYPE)
         self._current_cell = XMLTableDataCell(
             cell_coords=cell_coords,
-            value = ''
+            value=''
         )
 
     def _set_current_row(self):

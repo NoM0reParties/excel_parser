@@ -34,8 +34,6 @@ class AbstractXmlHandler(ContentHandler):
             self._set_cell_value()
         if name == XLSTagTypes.ROW:
             if self.__min_row <= self.row_number:
-                print(self._tag_content)
-                print(self.row_number)
                 self._add_to_table_data()
 
     @property

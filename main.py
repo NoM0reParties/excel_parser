@@ -1,13 +1,13 @@
 import datetime
 
 from data_extractor import DataExtractor
-from schemas import ExtractModes
+from schemas import ExtractModes, ExtractEngine
 
 if __name__ == '__main__':
     start = datetime.datetime.now()
-    de = DataExtractor('test.xlsx')
+    de = DataExtractor('test.xlsx', engine=ExtractEngine.LXML, mode=ExtractModes.GROUP_BY)
     for row in de.iter_rows():
-        pass
+        print(row.dict())
     print((datetime.datetime.now() - start).total_seconds())
 
 

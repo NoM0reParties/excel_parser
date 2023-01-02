@@ -1,4 +1,0 @@
-from xml_handlers.asbtract_xml_handler import AbstractXmlHandler
-from xml_handlers.data_handlers.table_data_handler import TableDataHandler
-from xml_handlers.data_handlers.raw_table_data_handler import RawTableDataHandler
-from xml_handlers.data_handlers.string_handler import SharedStringHandler
