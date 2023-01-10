@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from schemas import XLSCellTagNames
+from schemas import XLSCellTagNames, XLSTableValueType
 from sax_handlers.asbtract_xml_handler import AbstractXmlHandler
 
 
@@ -24,8 +24,9 @@ class RawTableDataHandler(AbstractXmlHandler):
         self._table_data.append(self._current_row)
 
     def _set_data_type(self, attrs):
-        self._data_type = attrs.get(XLSCellTagNames.DATA_TYPE)
+        self._data_type = attrs.get(XLSCellTagNames.DATA_TYPE, XLSTableValueType.UNKNOWN)
+        self._set_value_from()
 
     def iter_rows(self):
-        for row in self._table_data[1:]:
+        for row in self._table_data[0:]:
             yield row

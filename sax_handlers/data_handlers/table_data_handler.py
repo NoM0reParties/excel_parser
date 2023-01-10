@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from schemas import XMLTableDataCell, XMLTableDataRow, XLSCellTagNames, XLSRowTagNames
+from schemas import XMLTableDataCell, XMLTableDataRow, XLSCellTagNames, XLSTableValueType
 from sax_handlers.asbtract_xml_handler import AbstractXmlHandler
 
 
@@ -14,7 +14,8 @@ class TableDataHandler(AbstractXmlHandler):
 
     def _set_data_type(self, attrs):
         cell_coords = attrs.get(XLSCellTagNames.COORDS)
-        self._data_type = attrs.get(XLSCellTagNames.DATA_TYPE)
+        self._data_type = attrs.get(XLSCellTagNames.DATA_TYPE, XLSTableValueType.UNKNOWN)
+        self._set_value_from()
         self._current_cell = XMLTableDataCell(
             cell_coords=cell_coords,
             value=''

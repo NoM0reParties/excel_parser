@@ -5,9 +5,10 @@ from schemas import ExtractModes, ExtractEngine
 
 if __name__ == '__main__':
     start = datetime.datetime.now()
-    de = DataExtractor('test.xlsx', engine=ExtractEngine.LXML, mode=ExtractModes.GROUP_BY)
+    de = DataExtractor('test_big.xlsx', engine=ExtractEngine.LXML, mode=ExtractModes.GROUP_BY, min_row=2)
     for row in de.iter_rows():
-        print(row.dict())
+        for cell in row:
+            print(cell)
     print((datetime.datetime.now() - start).total_seconds())
 
 

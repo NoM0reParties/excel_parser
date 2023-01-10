@@ -15,6 +15,9 @@ class SharedStringHandler(ContentHandler):
         self._tag_content = ""
         self._current_el = name
 
+    def characters(self, content):
+        self._tag_content += content
+
     def endElement(self, name: str):
         if name == 't':
             self.strings_mapping.append(self._tag_content)

@@ -26,6 +26,8 @@ class XMLTableDataCell:
 
     @property
     def typed_value(self) -> Any:
+        if self.value is None:
+            return
         raw_symbols = self.value.replace(',', '').replace('.', '')
         if not raw_symbols.isdigit():
             return self.value
@@ -82,10 +84,10 @@ class XMLTableDataRow:
         return {row_key: values}
 
     def dict(self):
-        return {self.columns[i]: c.value for i, c in enumerate(self.cells)}
+        return {self.columns[i]: c.typed_value for i, c in enumerate(self.cells)}
 
     def dict_by_col(self):
-        return {c.col: c.typed_value for _, c in enumerate(self.cells)}
+        return {c.col: c.typed_value for c in self.cells}
 
     def set_cells(self, cells):
         self.cells = cells

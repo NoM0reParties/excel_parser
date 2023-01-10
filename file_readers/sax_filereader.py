@@ -15,8 +15,11 @@ class SaxFileReader(AbstractFileReader):
         self.data_handler = data_handler(min_row=min_row)
 
     def _read_shared_string(self):
+        strings_file = self._read_shared_string_file()
+        if strings_file is None:
+            return
         self.__parser.setContentHandler(self.__string_handler)
-        self.__parser.parse(self._read_shared_string_file())
+        self.__parser.parse(strings_file)
 
     def _read_table_data(self):
         self.__parser.setContentHandler(self.data_handler)

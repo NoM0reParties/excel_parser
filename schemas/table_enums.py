@@ -14,12 +14,17 @@ class ExtractEngine(str, Enum):
 class XLSTagTypes(str, Enum):
     CELL = 'c'
     VALUE = 'v'
+    FORMULA = 'f'
     ROW = 'row'
+    INLINE_STRING = 't'
+    UNKNOWN = 'UNKNOWN'
 
 
 class XLSTableValueType(str, Enum):
     STRING = 's'
     NUMBER = 'n'
+    INLINE_STRING = 'inlineStr'
+    UNKNOWN = 'UNKNOWN'
 
 
 class XLSCellTagNames(str, Enum):

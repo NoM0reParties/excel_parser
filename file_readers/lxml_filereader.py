@@ -16,7 +16,11 @@ class LXMLFileReader(AbstractFileReader):
         self.data_handler = None
 
     def _read_shared_string(self):
-        tree = parse(self._read_shared_string_file())
+        strings_file = self._read_shared_string_file()
+        if strings_file is None:
+            self.__shared_strings = None
+            return
+        tree = parse(strings_file)
         root = tree.getroot()
         self.__shared_strings = list(map(lambda x: x.text, root.findall('.//{*}t')))
 

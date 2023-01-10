@@ -9,11 +9,14 @@ class AbstractFileReader(ABC):
 
     def _read_shared_string_file(self):
         zf = ZipFile(self._file_name)
-        return zf.open('xl/sharedStrings.xml')
+        try:
+            return zf.open('xl/sharedStrings.xml')
+        except KeyError:
+            return None
 
     def _read_table_data_file(self):  # TODO learn how to handle different sheetnames
         zf = ZipFile(self._file_name)
-        return zf.open('xl/worksheets/sheet1.xml')
+        return zf.open('xl/worksheets/sheet2.xml')
 
     @abstractmethod
     def _read_shared_string(self):
