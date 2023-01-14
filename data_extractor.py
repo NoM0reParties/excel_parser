@@ -1,3 +1,5 @@
+from typing import Optional
+
 from data_extractor_factory import DataExtractorFactory
 from schemas import ExtractModes, ExtractEngine
 
@@ -9,7 +11,8 @@ class DataExtractor:
             file_name: str,
             mode: ExtractModes = ExtractModes.SIMPLE,
             min_row: int = 1,
-            engine: ExtractEngine = ExtractEngine.LXML
+            engine: ExtractEngine = ExtractEngine.LXML,
+            sheet_name: Optional[str] = None,
     ):
         self.__factory = DataExtractorFactory
         reader, data_handler = self.__factory.get_reader_and_handler(
@@ -20,6 +23,7 @@ class DataExtractor:
             file_name=file_name,
             data_handler=data_handler,
             min_row=min_row,
+            sheet_name=sheet_name,
         )
         self.__data_read = False
 

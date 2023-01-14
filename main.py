@@ -5,7 +5,13 @@ from schemas import ExtractModes, ExtractEngine
 
 if __name__ == '__main__':
     start = datetime.datetime.now()
-    de = DataExtractor('test_big.xlsx', engine=ExtractEngine.LXML, mode=ExtractModes.GROUP_BY, min_row=2)
+    de = DataExtractor(
+        'test_big.xlsx',
+        engine=ExtractEngine.SAX,
+        mode=ExtractModes.GROUP_BY,
+        min_row=1,
+        sheet_name="svod_SKU"
+    )
     for row in de.iter_rows():
         for cell in row:
             print(cell)

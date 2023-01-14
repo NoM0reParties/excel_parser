@@ -2,3 +2,4 @@ from sax_handlers.asbtract_xml_handler import AbstractXmlHandler
 from sax_handlers.data_handlers.table_data_handler import TableDataHandler
 from sax_handlers.data_handlers.raw_table_data_handler import RawTableDataHandler
 from sax_handlers.data_handlers.string_handler import SharedStringHandler
+from sax_handlers.data_handlers.workbook_handler import WorkbookHandler
